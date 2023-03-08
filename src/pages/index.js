@@ -11,8 +11,6 @@ export async function getServerSideProps() {
   const initialSiteData = await getData(bikeWeekSite);
   const initialAppData = await getData(bikeWeekApp);
 
-  console.log(initialAppData);
-
   async function getData(ref) {
     const snapshot = await getDocs(ref);
     const data = snapshot.docs.map((doc) => doc.data());
@@ -44,7 +42,7 @@ export default function Home({ initialSiteData, initialAppData }) {
       siteUnsub();
       appUnsub();
     };
-  });
+  }, []);
 
   return (
     <div
